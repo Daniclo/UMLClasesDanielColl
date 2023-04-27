@@ -1,30 +1,47 @@
 @startuml
 
-Persona --> Asociacion
-Evento --> Asociacion
-Localizacion --> Asociacion
+Persona --o Asociacion
+Evento --o Asociacion
+Localizacion --o Asociacion
 Miembro --> Persona
 MiembroJuntaDirectiva --> Miembro
 Conferencia --> Evento
 ReunionJuntaDirectiva --> Evento
-Conferencia -- Persona
-ReunionJuntaDirectiva -- MiembroJuntaDirectiva
-Miembro -- Evento
-Evento -- Localizacion
+Conferencia -- Persona : atiende a
+ReunionJuntaDirectiva "0..*" -- "0..*" MiembroJuntaDirectiva : atiende a
+Miembro "0..*" -- "0..*" Evento : atiende a
+Evento "0..*" -- "0..*" Localizacion : tiene lugar en
 
-Class Asociacion{}
+Class Asociacion{
+nuevaLocalizacion(l:Localizacion): void
+nuevoEvento(e:Evento): void
+nuevaPersona(p:Persona): void
+informarEvento(e:Evento): void
+registrarse(m:Miembro,e:Evento): void
+}
 
-Class Miembro{}
+Class Miembro{
+e-mail: String
+}
 
 Class MiembroJuntaDirectiva{}
 
-Class Evento{}
+Class Evento{
+fecha: String
+descripcion: String
+asignarLocalizacion(l:Localizacion): void
+}
 
-Class Conferencia{}
+Class Conferencia{
+numMaxAsistentes: int
+}
 
 Class ReunionJuntaDirectiva{}
 
-Class Localizacion{}
+Class Localizacion{
+descripcion: String
+direccion: String
+}
 
 Class Persona{
 nombre: String
