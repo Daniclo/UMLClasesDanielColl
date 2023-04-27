@@ -1,0 +1,33 @@
+@startuml
+
+Persona --> Asociacion
+Evento --> Asociacion
+Localizacion --> Asociacion
+Miembro --> Persona
+MiembroJuntaDirectiva --> Miembro
+Conferencia --> Evento
+ReunionJuntaDirectiva --> Evento
+Conferencia -- Persona
+ReunionJuntaDirectiva -- MiembroJuntaDirectiva
+Miembro -- Evento
+Evento -- Localizacion
+
+Class Asociacion{}
+
+Class Miembro{}
+
+Class MiembroJuntaDirectiva{}
+
+Class Evento{}
+
+Class Conferencia{}
+
+Class ReunionJuntaDirectiva{}
+
+Class Localizacion{}
+
+Class Persona{
+nombre: String
+}
+
+@enduml
